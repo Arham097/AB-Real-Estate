@@ -9,3 +9,6 @@
   scroll-behavior: smooth;
   font-family: 'Poppins', sans-serif;
 }
+:root{
+  overflow-x: hidden;
+}

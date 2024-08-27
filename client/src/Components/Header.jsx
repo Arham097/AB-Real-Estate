@@ -8,6 +8,7 @@ import { MdSearch } from "react-icons/md";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+  const inputValue = useRef();
   const headerLinks = useRef(null);
   useGSAP(() => {
     if (!toggle) return;
@@ -15,7 +16,7 @@ const Header = () => {
       x: -150,
       duration: 2,
       ease: "power4.out",
-      stagger: 0.2,
+      stagger: 0.1,
     });
   }, [toggle]);
 
@@ -29,12 +30,12 @@ const Header = () => {
         <div className="w-full h-full flex justify-between items-center">
           <div className="flex gap-x-1 ml-5 items-center">
             <IoHome className="text-2xl " />
-            <h1 className="text-xl font-bold mt-1 max-md:text-xs">
+            <h1 className="text-xl font-bold mt-1 max-md:text-lg max-sm:text-sm">
               AB Real Estate
             </h1>
           </div>
           <nav className="mr-5 max-md:hidden">
-            <ul className="flex gap-x-10 font-bold">
+            <ul className="flex gap-x-10 font-bold pt-2 max-lg:gap-x-3">
               <li className="hover:text-white">
                 <Link to="/">Home</Link>
               </li>
@@ -49,12 +50,18 @@ const Header = () => {
               </li>
             </ul>
           </nav>
-          <div className="search w-[200px] mx-3 flex justify-center items-center border-sky-100 border-2 ">
-            <MdSearch className="text-[34px] bg-slate-100 border-r-2 outline-none  border-none max-md:w-[22px]" />
+          <div className="search w-[200px] mx-3 flex justify-center items-center border-sky-100 border-2 max-md:mr-7 rounded-md">
+            <MdSearch
+              className="text-[34px] bg-slate-100 border-r-2 outline-none  border-none max-md:w-[22px] max-md:pl-1  "
+              onClick={() => {
+                console.log(inputValue.current.value);
+              }}
+            />
             <input
               type="text"
+              ref={inputValue}
               placeholder="Search by property id"
-              className="p-2  text-[12px] w-full outline-none border-none max-md:w-[150px] text-black bg-slate-100"
+              className="p-2  text-[12px] w-full outline-none border-none  text-black bg-slate-100"
             />
           </div>
           <div className="md:hidden">
@@ -72,7 +79,7 @@ const Header = () => {
 
       {/* Conditionally Rendered Div */}
       {toggle && (
-        <div className="w-full bg-blue-200 flex flex-col transition-all duration-1000 ease-in-out">
+        <div className="w-full bg-blue-300 flex flex-col transition-all duration-1000 ease-in-out">
           <nav clas>
             <ul
               className="flex flex-col gap-y-2 font-bold py-2 "
