@@ -12,3 +12,6 @@
 :root{
   overflow-x: hidden;
 }
+.header_color{
+  background-color: black;
+}

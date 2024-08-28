@@ -26,11 +26,11 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full h-16 bg-blue-400 mx-auto flex flex-col justify-between items-center bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300">
+      <header className="w-full h-16 mx-auto flex flex-col justify-between items-center bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500 px-1">
         <div className="w-full h-full flex justify-between items-center">
           <div className="flex gap-x-1 ml-5 items-center">
             <IoHome className="text-2xl " />
-            <h1 className="text-xl font-bold mt-1 max-md:text-lg max-sm:text-sm">
+            <h1 className="text-xl font-bold mt-1 max-md:text-lg max-sm:text-sm ">
               AB Real Estate
             </h1>
           </div>
