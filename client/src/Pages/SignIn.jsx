@@ -8,9 +8,11 @@ import {
   signInSuccess,
   signInFailure,
 } from "./../store/userSlice";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 function SignUp() {
   const [signInInfo, setSignInInfo] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -55,12 +57,25 @@ function SignUp() {
                 id="email"
                 onChange={handleChange}
               />
-              <TextInput
-                type="password"
-                placeholder="Enter password"
-                id="password"
-                onChange={handleChange}
-              />
+              <div className="relative">
+                <TextInput
+                  type="password"
+                  placeholder="Enter password"
+                  id="password"
+                  onChange={handleChange}
+                />
+                {!showPassword ? (
+                  <FaRegEyeSlash
+                    className="text-gray-500 absolute top-1/2 right-3 -translate-y-1/2"
+                    onClick={() => setShowPassword(false)}
+                  />
+                ) : (
+                  <FaRegEye
+                    className="text-gray-500 absolute top-1/2 right-3 -translate-y-1/2"
+                    onClick={() => setShowPassword(true)}
+                  />
+                )}
+              </div>
               <Button
                 type="submit"
                 className="text-xl w-full font-bold"
