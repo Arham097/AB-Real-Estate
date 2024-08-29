@@ -52,7 +52,7 @@ const Header = () => {
           </nav>
           <div className="search w-[200px] mx-3 flex justify-center items-center border-sky-100 border-2 max-md:mr-7 rounded-md">
             <MdSearch
-              className="text-[34px] bg-slate-100 border-r-2 outline-none  border-none max-md:w-[22px] max-md:pl-1  "
+              className="text-[40px] bg-slate-100 border-r-2 outline-none  border-none max-md:w-[22px] max-md:pl-1  "
               onClick={() => {
                 console.log(inputValue.current.value);
               }}

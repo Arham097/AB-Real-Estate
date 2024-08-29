@@ -59,7 +59,7 @@ const Hero = () => {
           where comfort meets elegance. Start your quest for the ultimate family
           sanctuary today.
         </h3>
-        <div className="search w-11/12 h-48 bg-slate-600 ml-8 mt-4 rounded-lg max-md:ml-12 px-2 max-md:h-52 max-sm:w-2/4 max-sm:mx-[25%] max-sm:h-60 max-sm:py-3">
+        <div className="search w-11/12 h-56 bg-slate-600 ml-8 mt-4 rounded-lg max-md:ml-12 px-2 max-md:h-52 max-sm:w-2/4 max-sm:mx-[25%] max-sm:h-60 max-sm:py-3">
           <div className=" w-full h-2/4 flex justify-between items-center px-2  pt-2  max-sm:h-full max-sm:flex-col">
             <div className="w-1/5 h-4/5 bg-slate-700 border-blue-600 border-2 text-center py-1 rounded-md max-sm:w-3/5 max-sm:h-1/3 max-[450px]:w-fit">
               <p className="font-semibold text-white mb-1">City</p>
@@ -67,7 +67,7 @@ const Hero = () => {
                 name=""
                 id=""
                 ref={HomeCity}
-                className="w-4/5 px-2 bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 max-sm:h-6 "
+                className="w-4/5 px-2 bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 max-sm:h-7 max-sm:py-0 "
               >
                 <option value="Karachi">Karachi</option>
                 <option value="Lahore">Lahore</option>
@@ -104,7 +104,7 @@ const Hero = () => {
             </div>
             <div className="w-2/5 h-4/5 bg-slate-700  text-center py-2 rounded-md border-blue-600 border-2 mx-5 flex-1">
               <p className="font-semibold  text-white mb-1">Price (PKR)</p>
-              <div className="flex gap-x-2 px-2 justify-center">
+              <div className="flex gap-x-2 px-2 justify-center items-center">
                 <select
                   name=""
                   id=""
@@ -134,14 +134,14 @@ const Hero = () => {
                 </select>
               </div>
             </div>
-            <div className="w-1/5 h-4/5 bg-slate-700 items-center text-center py-2 rounded-md border-blue-600 border-2 max-md:w-[150px]">
+            <div className="w-3/12 h-4/5 bg-slate-700 items-center text-center py-2 rounded-md border-blue-600 border-2 max-md:w-[150px]">
               <p className="font-semibold  text-white mb-1">Area (Marla)</p>
-              <div className="flex gap-x-2 px-2 justify-center">
+              <div className="flex gap-x-2 px-2 justify-center items-center">
                 <select
                   name=""
                   id=""
                   ref={minArea}
-                  className="w-2/5  bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-2/5 bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 px-2"
                 >
                   <option value="1">1</option>
                   <option value="2">2</option>

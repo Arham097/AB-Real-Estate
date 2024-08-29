@@ -17,7 +17,7 @@ const PostProeprty = () => {
               name="price"
               required
               placeholder="Enter Property Price"
-              className=" w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400 border-[3px] px-2  max-lg:text-sm"
+              className=" w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400  border-2 border-slate-400 px-2  max-lg:text-sm"
             />
           </div>
           <div className="entry px-1 ">
@@ -29,7 +29,7 @@ const PostProeprty = () => {
               name="area"
               required
               placeholder="Enter Property Area"
-              className=" w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400 border-[3px] px-2 max-lg:text-sm"
+              className=" w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400   border-2 border-slate-400 max-lg:text-sm"
             />
           </div>
           <div className="entry px-1">
@@ -41,7 +41,7 @@ const PostProeprty = () => {
               name="property-type"
               required
               placeholder="Enter Property Type"
-              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400 border-[3px] px-2 max-lg:text-sm"
+              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400   border-2 border-slate-400 px-2 max-lg:text-sm"
             />
           </div>
           <div className="entry px-1">
@@ -53,7 +53,7 @@ const PostProeprty = () => {
               name="purpose"
               required
               placeholder="Enter Property Purpose"
-              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400 border-[3px] px-2 max-lg:text-sm"
+              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400   border-2 border-slate-400 px-2 max-lg:text-sm"
             />
           </div>
           <div className="entry px-1">
@@ -65,7 +65,7 @@ const PostProeprty = () => {
               name="bedrooms"
               required
               placeholder="How Many Bedrooms?"
-              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400 border-[3px] px-2 max-lg:text-sm"
+              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400  border-2 border-slate-400 px-2 max-lg:text-sm"
             />
           </div>
           <div className="entry px-1">
@@ -77,7 +77,7 @@ const PostProeprty = () => {
               name="baths"
               required
               placeholder="How Many Bathrooms?"
-              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400 border-[3px] px-2 max-lg:text-sm"
+              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400  border-2 border-slate-400 px-2 max-lg:text-sm"
             />
           </div>
           <div className="entry px-1">
@@ -89,7 +89,7 @@ const PostProeprty = () => {
               name="location"
               required
               placeholder="Enter Address"
-              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400 border-[3px] px-2 max-lg:text-sm"
+              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400  border-2 border-slate-400 px-2 max-lg:text-sm"
             />
           </div>
           <div className="entry px-1">
@@ -101,7 +101,7 @@ const PostProeprty = () => {
               name="city"
               required
               placeholder="Enter City"
-              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400 border-[3px] px-2 max-lg:text-sm"
+              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400  border-2 border-slate-400 px-2 max-lg:text-sm"
             />
           </div>
           <div className="entry px-1">
@@ -113,7 +113,7 @@ const PostProeprty = () => {
               name="latitude"
               required
               placeholder="Enter Latitude"
-              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400 border-[3px] px-2 max-lg:text-sm"
+              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400  border-2 border-slate-400 px-2 max-lg:text-sm"
             />
           </div>
           <div className="entry px-1">
@@ -125,7 +125,7 @@ const PostProeprty = () => {
               name="longitude"
               required
               placeholder="Enter Longitude"
-              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400 border-[3px] px-2 max-lg:text-sm"
+              className="w-full h-12 rounded-lg outline-none transition-all ease-in focus:border-blue-400  border-2 border-slate-400 px-2 max-lg:text-sm"
             />
           </div>
         </div>
@@ -138,19 +138,19 @@ const PostProeprty = () => {
             name="description"
             id=""
             placeholder="Enter Description"
-            className="w-full mx-2 outline-none resize-none ring-[3px] p-2 rounded-md ring-slate-200 mt-1 h-24 max-lg:text-sm max-md:w-[97%]"
+            className="w-full mx-2 outline-none resize-none  border-2 border-slate-400 p-2 rounded-md ring-slate-200 mt-1 h-24 max-lg:text-sm max-md:w-[97%]"
           ></textarea>
         </div>
         <div className="images w-[97%] h-20 ml-2 mt-3 grid grid-cols-3 max-lg:grid-cols-2 max-lg:h-32 max-md:grid-cols-1 max-md:h-48 ">
-          <div className="image1 flex flex-col justify-center px-3 border-2 text-sm">
+          <div className="image1 flex flex-col justify-center px-3  border-2 border-slate-400 text-sm">
             <label htmlFor="img1">Select Image 1</label>
             <input type="file" name="img1" />
           </div>
-          <div className="image2 flex flex-col justify-center px-3 border-2 text-sm">
+          <div className="image2 flex flex-col justify-center px-3  border-2 border-slate-400 text-sm">
             <label htmlFor="img2">Select Image 2</label>
             <input type="file" name="img2" />
           </div>
-          <div className="image3 flex flex-col justify-center px-3 border-2 text-sm">
+          <div className="image3 flex flex-col justify-center px-3  border-2 border-slate-400 text-sm">
             <label htmlFor="img3">Select Image 3</label>
             <input type="file" name="img3" />
           </div>
