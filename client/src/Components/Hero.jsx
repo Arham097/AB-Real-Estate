@@ -1,9 +1,30 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
-  // const leftDiv = useRef();
+  const navigate = useNavigate();
+  const HomeCity = useRef();
+  const HomePropertyType = useRef();
+  const minPrice = useRef();
+  const maxPrice = useRef();
+  const minArea = useRef();
+  const maxArea = useRef();
+  const searchPlace = useRef();
+
+  const searchHomes = () => {
+    console.log(HomeCity.current.value);
+    console.log(HomePropertyType.current.value);
+    console.log(searchPlace.current.value);
+    console.log(minPrice.current.value);
+    console.log(maxPrice.current.value);
+    console.log(minArea.current.value);
+    console.log(maxArea.current.value);
+
+    navigate("/search-result");
+  };
+
   const images = [
     "/Home-Images/home-image-1.jpg",
     "/Home-Images/home-image-2.jpg",
@@ -45,6 +66,7 @@ const Hero = () => {
               <select
                 name=""
                 id=""
+                ref={HomeCity}
                 className="w-4/5 px-2 bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 max-sm:h-6 "
               >
                 <option value="Karachi">Karachi</option>
@@ -54,10 +76,16 @@ const Hero = () => {
             </div>
             <input
               type="text"
+              ref={searchPlace}
               placeholder="Enter Place"
               className="w-3/5 h-2/3 px-5 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-md max-sm:w-full max-sm:h-1/4 max-[450px]:text-ms "
             />
-            <button className="px-6 py-4 font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 max-sm:h-1/4">
+            <button
+              className="px-6 py-4 font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 max-sm:h-1/4"
+              onClick={() => {
+                searchHomes();
+              }}
+            >
               Search
             </button>
           </div>
@@ -67,6 +95,7 @@ const Hero = () => {
               <select
                 name=""
                 id=""
+                ref={HomePropertyType}
                 className="w-4/5 px-2 bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="House">House</option>
@@ -79,6 +108,7 @@ const Hero = () => {
                 <select
                   name=""
                   id=""
+                  ref={minPrice}
                   className="w-2/5 px-2 bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="1000000">1000000</option>
@@ -92,6 +122,7 @@ const Hero = () => {
                 <select
                   name=""
                   id=""
+                  ref={maxPrice}
                   className="w-2/5 px-2 bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="2000000">2000000</option>
@@ -109,6 +140,7 @@ const Hero = () => {
                 <select
                   name=""
                   id=""
+                  ref={minArea}
                   className="w-2/5  bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="1">1</option>
@@ -122,6 +154,7 @@ const Hero = () => {
                 <select
                   name=""
                   id=""
+                  ref={maxArea}
                   className="w-2/5 bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="2">2</option>
