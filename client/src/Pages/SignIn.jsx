@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button, TextInput, Alert } from "flowbite-react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,6 +14,7 @@ function SignUp() {
   const [signInInfo, setSignInInfo] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const passwordInput = useRef();
   const dispatch = useDispatch();
   const handleChange = (e) => {
     setSignInInfo({ ...signInInfo, [e.target.id]: e.target.value });
@@ -61,18 +62,25 @@ function SignUp() {
                 <TextInput
                   type="password"
                   placeholder="Enter password"
+                  ref={passwordInput}
                   id="password"
                   onChange={handleChange}
                 />
                 {!showPassword ? (
                   <FaRegEyeSlash
-                    className="text-gray-500 absolute top-1/2 right-3 -translate-y-1/2"
-                    onClick={() => setShowPassword(false)}
+                    className="text-gray-500 absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
+                    onClick={() => {
+                      setShowPassword(true);
+                      passwordInput.current.type = "text";
+                    }}
                   />
                 ) : (
                   <FaRegEye
-                    className="text-gray-500 absolute top-1/2 right-3 -translate-y-1/2"
-                    onClick={() => setShowPassword(true)}
+                    className="text-gray-500 absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
+                    onClick={() => {
+                      setShowPassword(false);
+                      passwordInput.current.type = "password";
+                    }}
                   />
                 )}
               </div>

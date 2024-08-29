@@ -26,29 +26,26 @@ const Hero = () => {
     };
   }, []);
 
-  useGSAP(() => {
-    gsap.from(".left", {});
-  }, []);
   return (
-    <div className="w-full h-[90vh] bg-white flex">
+    <div className="w-full h-[90vh] bg-white flex border-b-2 border-slate-300 pb-2">
       <div className="left w-2/3 max-[1000px]:w-full max-md:mr-4">
-        <h1 className="text-[50px] w-4/5 font-bold mt-16 ml-16 mb-3 max-lg:text-[35px] max-md:text-[30px] max-md:ml-12 max-[1100px]:text-4xl">
+        <h1 className="text-[50px] w-4/5 font-bold mt-12 ml-16 mb-3 max-lg:text-[35px] max-md:text-[30px] max-md:ml-12 max-[1100px]:text-4xl max-sm:mt-6 max-sm:text-[24px]">
           Find A <span className="text-blue-600 ">Perfect Home</span> To Live
           With Your Family
         </h1>
-        <h3 className="slogan_desc w-4/5 ml-16 text-justify font-bold italic max-md:text-xs max-md:ml-12 ">
+        <h3 className="slogan_desc w-4/5 ml-16 text-justify font-bold italic max-md:text-xs max-md:ml-12 max-sm:text-xs">
           Uncover a world of endless possibilities as you search for a place
           where comfort meets elegance. Start your quest for the ultimate family
           sanctuary today.
         </h3>
-        <div className="search w-11/12 h-48 bg-slate-600 ml-8 mt-4 rounded-lg max-md:ml-12 px-2 max-md:h-52">
-          <div className=" w-full h-2/4 flex justify-between items-center px-2  pt-2 bg-black max-sm:h-full max-sm:grid-cols-2 max-sm:grid max-sm:flex-none">
-            <div className="w-1/5 h-4/5 bg-slate-700 border-blue-600 border-2 text-center py-1 rounded-md max-sm:w-3/5">
+        <div className="search w-11/12 h-48 bg-slate-600 ml-8 mt-4 rounded-lg max-md:ml-12 px-2 max-md:h-52 max-sm:w-2/4 max-sm:mx-[25%] max-sm:h-60 max-sm:py-3">
+          <div className=" w-full h-2/4 flex justify-between items-center px-2  pt-2  max-sm:h-full max-sm:flex-col">
+            <div className="w-1/5 h-4/5 bg-slate-700 border-blue-600 border-2 text-center py-1 rounded-md max-sm:w-3/5 max-sm:h-1/3 max-[450px]:w-fit">
               <p className="font-semibold text-white mb-1">City</p>
               <select
                 name=""
                 id=""
-                className="w-4/5 px-2 bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-4/5 px-2 bg-slate-200 text-gray-700 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 max-sm:h-6 "
               >
                 <option value="Karachi">Karachi</option>
                 <option value="Lahore">Lahore</option>
@@ -57,10 +54,10 @@ const Hero = () => {
             </div>
             <input
               type="text"
-              placeholder="Enter Place You Want to Search "
-              className="w-3/5 h-2/3 px-5 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-md max-sm:w-full"
+              placeholder="Enter Place"
+              className="w-3/5 h-2/3 px-5 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-md max-sm:w-full max-sm:h-1/4 max-[450px]:text-ms "
             />
-            <button className="px-6 py-4 font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+            <button className="px-6 py-4 font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 max-sm:h-1/4">
               Search
             </button>
           </div>
@@ -76,7 +73,7 @@ const Hero = () => {
                 <option value="Flat">Flat</option>
               </select>
             </div>
-            <div className="w-2/5 h-4/5 bg-slate-700  text-center py-2 rounded-md border-blue-600 border-2">
+            <div className="w-2/5 h-4/5 bg-slate-700  text-center py-2 rounded-md border-blue-600 border-2 mx-5 flex-1">
               <p className="font-semibold  text-white mb-1">Price (PKR)</p>
               <div className="flex gap-x-2 px-2 justify-center">
                 <select
