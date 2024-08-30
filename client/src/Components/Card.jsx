@@ -18,7 +18,7 @@ const Card = ({ price, location, type, bedrooms, bathrooms, size }) => {
       <div className="w-full h-1/2 bg-slate-50 font-semibold px-[4%] py-[4%] flex flex-col gap-y-1 max-sm:gap-y-0 max-sm:mb-1 ">
         <p className="text-xl max-md:text-lg ">Rs: {price}</p>
         <p className="text-sm text-slate-600 font-semibold"> {location}</p>
-        <p className="text-blue-500">House for {type}</p>
+        <p className="text-blue-500">House {type}</p>
         <div>
           <div className="flex gap-x-5 items-center ">
             <div className="flex gap-x-1 ">

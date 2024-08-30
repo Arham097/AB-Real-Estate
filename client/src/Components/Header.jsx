@@ -3,13 +3,28 @@ import gsap from "gsap";
 import React, { useRef, useState } from "react";
 import { IoHome, IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdSearch } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { getHouseById } from "../store/houseSlice";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
   const inputValue = useRef();
   const headerLinks = useRef(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const getProperty = async () => {
+    const id = inputValue.current.value;
+    if (!id) return;
+    let data = await fetch(`http://localhost:3000/api/house/${id}`);
+    data = await data.json();
+    console.log(data.data.house);
+    dispatch(getHouseById(data.data.house));
+    navigate(`/house/${id}`);
+  };
+
   useGSAP(() => {
     if (!toggle) return;
     gsap.from(headerLinks.current.children, {
@@ -53,15 +68,13 @@ const Header = () => {
           <div className="search w-[200px] mx-3 flex justify-center items-center border-sky-100 border-2 max-md:mr-7 rounded-md">
             <MdSearch
               className="text-[40px] bg-slate-100 border-r-2 outline-none  border-none max-md:w-[22px] max-md:pl-1  "
-              onClick={() => {
-                console.log(inputValue.current.value);
-              }}
+              onClick={getProperty}
             />
             <input
               type="text"
               ref={inputValue}
               placeholder="Search by property id"
-              className="p-2  text-[12px] w-full outline-none border-none  text-black bg-slate-100"
+              className="p-2 text-[12px] w-full outline-none border-none text-black bg-slate-100"
             />
           </div>
           <div className="md:hidden">

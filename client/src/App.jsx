@@ -6,6 +6,7 @@ import SearchResult from "./Pages/SearchResult";
 import PostProeprty from "./Pages/PostProeprty";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
+import PropertyDetails from "./Pages/PropertyDetails";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/post-property" element={<PostProeprty />}></Route>
         <Route path="/sign-up" element={<SignUp />}></Route>
         <Route path="/sign-in" element={<SignIn />}></Route>
+        <Route path="/house/:id" element={<PropertyDetails />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>
