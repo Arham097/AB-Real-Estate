@@ -18,18 +18,20 @@ function SignUp() {
   const handleChange = (e) => {
     setSignUpInfo({ ...signUpInfo, [e.target.id]: e.target.value.trim() });
   };
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       setSuccess(false);
       setLoading(true);
       setError(false);
-      const res = await fetch("", {
+      const res = await fetch("http://localhost:3000/api/auth/sign-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(signUpInfo),
       });
-      setLoading(true);
       const data = await res.json();
+      setLoading(false);
+
       if (res.ok) {
         setSuccess(true);
         navigate("/sign-in");

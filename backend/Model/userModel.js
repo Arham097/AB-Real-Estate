@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
-const validate = require("validate");
+const validate = require("validator");
 const crypto = require("crypto");
+const bcrypt = require("bcryptjs");
 
-const userShema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -11,13 +12,14 @@ const userShema = mongoose.Schema(
     email: {
       type: String,
       require: true,
-      unique,
-      lowercase,
+      unique: true,
+      lowercase: true,
       validate: [validate.isEmail, "Please enter valid E-mail"],
     },
     password: {
       type: String,
       require: [true, "Password is a required field"],
+      select: false,
     },
     confirmPassword: {
       type: String,
@@ -48,14 +50,24 @@ const userShema = mongoose.Schema(
   },
   { timestamps: true }
 );
-const userModel = mongoose.model("user", userShema);
-userModel.methods.createResetPasswordToken = function () {
-  const token = crypto.randomBytes(32).toString("hex");
-  this.passwordResetToken = crypto
-    .createHash("sha256")
-    .update(token)
-    .digest("hex");
-  this.passwordResetTokenExpires = Date.now() + 10 * 60 * 60 * 1000;
-  return token;
-};
+// userModel.methods.createResetPasswordToken = function () {
+//   const token = crypto.randomBytes(32).toString("hex");
+//   this.passwordResetToken = crypto
+//     .createHash("sha256")
+//     .update(token)
+//     .digest("hex");
+//   this.passwordResetTokenExpires = Date.now() + 10 * 60 * 60 * 1000;
+//   return token;
+// };
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  this.confirmPassword = undefined;
+  next();
+})
+userSchema.methods.comparePassword = async function (userPass, passDB) {
+  return await bcrypt.compare(userPass, passDB);
+}
+
+const userModel = mongoose.model("users", userSchema);
 module.exports = userModel;
