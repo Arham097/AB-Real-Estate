@@ -4,7 +4,9 @@ const houseController = require("./../Controller/houseController");
 const router = express.Router();
 
 router.route('/search-houses')
-  .get(houseController.getHouses);
+  .post(houseController.getHouses);
+router.route('/locations')
+  .get(houseController.getLocations)
 router.route('/featured')
   .get(houseController.getFeaturedHouses);
 router.route('/for-sale')
