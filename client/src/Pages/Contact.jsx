@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
@@ -6,10 +6,18 @@ import { FaFacebookSquare, FaLinkedin } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io5";
 import { BsLinkedin } from "react-icons/bs";
 import { FaGithubSquare } from "react-icons/fa";
+import Modal from "../Components/Modal";
 const Contact = () => {
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const messageRef = useRef(null);
+  const [showModal, setShowModal] = useState(false);
+  const [responseMsg, setResponseMsg] = useState("");
+  const [title, setTitle] = useState("");
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,16 +36,38 @@ const Contact = () => {
         }
       );
       const data = await response.json();
-      console.log(data);
+      console.log(data.status);
+      if (data.status === "failed") {
+        setResponseMsg("Failed to Send Email, Please Try Again later");
+        setTitle("Failed");
+        setShowModal(true);
+      }
+      if (response.ok) {
+        setShowModal(true);
+        nameRef.current.value = "";
+        emailRef.current.value = "";
+        messageRef.current.value = "";
+        const responseMsg = `Hi ${name},\n Thank you for reaching out! We’ve received your message and will get back to you within 24 hours. If your request is urgent, please call us at 03102647209.  Looking forward to assisting you!`;
+        setResponseMsg(responseMsg);
+        setTitle("Thank You for Reaching Out");
+      }
     } catch (err) {
       res.status(500).json({
         status: "fail",
         message: err.message,
       });
+      setShowModal(true);
     }
   };
   return (
     <div className="w-full min-h-96 py-5 max-md:py-10">
+      {showModal && (
+        <Modal
+          closeModal={closeModal}
+          responseMsg={responseMsg}
+          title={title}
+        />
+      )}
       <div className="w-full h-24 flex flex-col justify-center items-center">
         <h1 className="font-extrabold text-5xl ">Contact us</h1>
         <p className="w-3/4 text-center mt-1 max-md:w-11/12">
@@ -97,7 +127,7 @@ const Contact = () => {
               </div>
               <div className="entry1 flex flex-col ">
                 <input
-                  type="text"
+                  type="email"
                   name="email"
                   autoComplete="off"
                   placeholder="Email"
