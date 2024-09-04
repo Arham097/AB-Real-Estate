@@ -26,9 +26,10 @@ exports.getHouseById = async (req, res, next) => {
 };
 exports.getHouses = async (req, res, next) => {
   try {
-    const { city, property_type, min_price, max_price, min_area, max_area } = req.body;
+    const { city, location, property_type, min_price = 0, max_price = Infinity, min_area = 0, max_area = Infinity } = req.body;
     const houses = await House.find({
       city,
+      location,
       property_type,
       price: {
         $gte: min_price,
@@ -39,7 +40,7 @@ exports.getHouses = async (req, res, next) => {
         $lte: max_area,
       }
     });
-    if (!houses) {
+    if (houses.length === 0) {
       return res.status(404).json({
         status: 'fail',
         message: "Houses with given description not found",
@@ -47,6 +48,7 @@ exports.getHouses = async (req, res, next) => {
     }
     res.status(200).json({
       status: 'success',
+      length: houses.length,
       data: {
         houses
       }
@@ -127,3 +129,25 @@ exports.getForRentHouses = async (req, res, next) => {
   }
 }
 
+exports.getLocations = async (req, res, next) => {
+  try {
+    const locations = await House.find().distinct('location');
+    if (!locations) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'Not Found'
+      });
+    }
+    res.status(200).json({
+      status: 'success',
+      data: {
+        locations
+      }
+    });
+  } catch (err) {
+    res.status(500).json({
+      status: 'fail',
+      message: err.message
+    });
+  }
+};

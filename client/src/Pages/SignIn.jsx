@@ -10,31 +10,37 @@ import {
 } from "./../store/userSlice";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-function SignUp() {
+function SignIn() {
   const [signInInfo, setSignInInfo] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const passwordInput = useRef();
   const dispatch = useDispatch();
+  console.log(signInInfo);
   const handleChange = (e) => {
     setSignInInfo({ ...signInInfo, [e.target.id]: e.target.value });
   };
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    console.log("login");
+    e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await fetch("/api/auth/sign-in", {
+      const res = await fetch("http://localhost:3000/api/auth/sign-in", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(signInInfo),
       });
+      console.log(res);
       const data = await res.json();
       if (res.ok) {
         dispatch(signInSuccess(data));
         navigate("/");
       } else {
+        console.log(res.message);
         dispatch(signInFailure(data.message));
       }
     } catch (err) {
+      console.log(err);
       dispatch(signInFailure(err.message));
     }
   };
@@ -130,4 +136,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignIn;

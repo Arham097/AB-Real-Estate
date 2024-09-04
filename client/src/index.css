@@ -15,3 +15,15 @@
 .header_color{
   background-color: black;
 }
+.result ul{
+  border-top:1px solid #999 ;
+  padding: 15px 10px ;
+}
+.result ul li{
+  list-style: none;
+  padding: 10px 5px;
+  /* border-bottom: 1px solid #999; */
+}
+.result ul li:hover{
+  background-color: #e9f3ff;
+}

@@ -9,7 +9,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    constsignInStart: (state) => {
+    signInStart: (state) => {
       state.loading = true;
       state.error = false;
     },

@@ -2,7 +2,14 @@ import React from "react";
 import { FaBath, FaBed } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 
-const SearchCard = ({ price, location, bedrooms, bathrooms, size }) => {
+const SearchCard = ({
+  price,
+  location,
+  bedrooms,
+  bathrooms,
+  size,
+  description,
+}) => {
   return (
     <div className="w-3/4 h-56 bg-white flex shadow-xl ring-1 ring-slate-200 hover:scale-105 transition-all duration-500 hover:shadow-2xl max-lg:w-11/12 max-md:flex-col max-md:w-2/3 max-md:h-96 max-sm:w-10/12 hover:ring-4">
       <div className="left w-[45%] h-full max-md:w-full ">
@@ -31,12 +38,7 @@ const SearchCard = ({ price, location, bedrooms, bathrooms, size }) => {
             <span>{size} marla </span>
           </div>
         </div>
-        <p className="line-clamp-3 font-medium ">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae,
-          deleniti laboriosam consectetur nam omnis soluta eligendi atque fuga
-          odio laborum quaerat voluptas voluptate reiciendis distinctio
-          recusandae eum? Vero, iste officiis.
-        </p>
+        <p className="line-clamp-3 font-medium ">{description}</p>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import PostProeprty from "./Pages/PostProeprty";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import PropertyDetails from "./Pages/PropertyDetails";
+import Contact from "./Pages/Contact";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/sign-up" element={<SignUp />}></Route>
         <Route path="/sign-in" element={<SignIn />}></Route>
         <Route path="/house/:id" element={<PropertyDetails />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

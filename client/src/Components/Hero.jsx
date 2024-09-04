@@ -2,8 +2,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getHouses } from "../store/houseSlice";
 
 const Hero = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const HomeCity = useRef();
   const HomePropertyType = useRef();
@@ -11,17 +14,55 @@ const Hero = () => {
   const maxPrice = useRef();
   const minArea = useRef();
   const maxArea = useRef();
-  const searchPlace = useRef();
 
-  const searchHomes = () => {
-    console.log(HomeCity.current.value);
-    console.log(HomePropertyType.current.value);
-    console.log(searchPlace.current.value);
-    console.log(minPrice.current.value);
-    console.log(maxPrice.current.value);
-    console.log(minArea.current.value);
-    console.log(maxArea.current.value);
+  const locations = useSelector((state) => state.house.locations);
+  const resultRef = useRef(null);
+  const searchPlace = useRef(null);
+  const [inputValue, setInputValue] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
 
+  const handleSearch = () => {
+    let result = [];
+    let input = searchPlace.current.value;
+    if (input.length) {
+      result = locations.filter((location) => {
+        return location.toLowerCase().includes(input.toLowerCase());
+      });
+    }
+    setSearchResult(result);
+  };
+  const handleListCLick = (list) => {
+    setInputValue(list);
+    setSearchResult([]);
+  };
+
+  const searchHomes = async () => {
+    const city = HomeCity.current.value;
+    const property_type = HomePropertyType.current.value;
+    const location = searchPlace.current.value;
+    const min_price = minPrice.current.value;
+    const max_price = maxPrice.current.value;
+    const min_area = minArea.current.value;
+    const max_area = maxArea.current.value;
+
+    const result = await fetch(
+      "http://localhost:3000/api/house/search-houses",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          city,
+          location,
+          property_type,
+          min_price,
+          max_price,
+          min_area,
+          max_area,
+        }),
+      }
+    );
+    const data = await result.json();
+    dispatch(getHouses(data.data.houses));
     navigate("/search-result");
   };
 
@@ -74,14 +115,37 @@ const Hero = () => {
                 <option value="Islamabad">Islamabad</option>
               </select>
             </div>
-            <input
-              type="text"
-              ref={searchPlace}
-              placeholder="Enter Place"
-              className="w-3/5 h-2/3 px-5 focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-md max-sm:w-full max-sm:h-1/4 max-[450px]:text-ms "
-            />
+            <div className="h-3/4 w-3/5 mx-2">
+              <input
+                type="text"
+                ref={searchPlace}
+                value={inputValue}
+                placeholder="Enter Place"
+                className="w-full h-full px-5 outline-none focus:outline-none focus:ring-2 focus:ring-blue-300 rounded-md rounded-b-none max-sm:w-full max-sm:h-1/4 max-[450px]:text-ms font-medium"
+                onChange={(e) => {
+                  setInputValue(e.target.value);
+                  handleSearch();
+                }}
+              />
+              {searchResult.length > 0 && (
+                <div
+                  className="result bg-white px-1 mx-[1px] relative z-30 "
+                  ref={resultRef}
+                >
+                  <ul>
+                    {searchResult.map((list, index) => {
+                      return (
+                        <li key={index} onClick={() => handleListCLick(list)}>
+                          {list}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
             <button
-              className="px-6 py-4 font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 max-sm:h-1/4"
+              className="px-7 py-6 font-bold bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 max-sm:h-1/4 text-lg"
               onClick={() => {
                 searchHomes();
               }}
@@ -90,7 +154,7 @@ const Hero = () => {
             </button>
           </div>
           <div className=" h-2/4 w-full flex justify-between px-2 items-center max-sm:hidden">
-            <div className="w-1/5 h-4/5 bg-slate-700 text-center py-2 rounded-md border-blue-600 border-2 max-md:w-[150px]">
+            <div className="w-1/5 h-4/5 bg-slate-700 text-center py-2 rounded-md border-blue-600 border-2 max-md:w-[150px] ">
               <p className="font-semibold  text-white mb-1">Property Type</p>
               <select
                 name=""
@@ -102,7 +166,7 @@ const Hero = () => {
                 <option value="Flat">Flat</option>
               </select>
             </div>
-            <div className="w-2/5 h-4/5 bg-slate-700  text-center py-2 rounded-md border-blue-600 border-2 mx-5 flex-1">
+            <div className="w-2/5 h-4/5 bg-slate-700  text-center py-2 rounded-md border-blue-600 border-2 mx-5 flex-1 property">
               <p className="font-semibold  text-white mb-1">Price (PKR)</p>
               <div className="flex gap-x-2 px-2 justify-center items-center">
                 <select
