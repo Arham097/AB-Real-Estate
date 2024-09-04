@@ -5,6 +5,9 @@ const router = express.Router();
 
 router.route('/search-houses')
   .post(houseController.getHouses);
+router.route('/send-email')
+  .post(houseController.sendEmail);
+
 router.route('/locations')
   .get(houseController.getLocations)
 router.route('/featured')

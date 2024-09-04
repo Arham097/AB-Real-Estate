@@ -1,4 +1,5 @@
 const House = require('../Model/house');
+const nodemailer = require('nodemailer');
 
 exports.getHouseById = async (req, res, next) => {
   try {
@@ -149,5 +150,38 @@ exports.getLocations = async (req, res, next) => {
       status: 'fail',
       message: err.message
     });
+  }
+};
+
+exports.sendEmail = async (req, res, next) => {
+  try {
+    const { name, email, message } = req.body;
+
+    // Setup the transporter
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      secure: true,
+      port: 465,
+      auth: {
+        user: "arhamhasan70@gmail.com",
+        pass: "nqfw dyav gwyn vlwb",
+      }
+    });
+
+    // Email options
+    const mailOptions = {
+      from: email,                      // Sender's email address
+      to: "arhamhasan70@gmail.com",     // Receiver's email address            
+      subject: `Email from ${name}`,       // Subject line
+      text: message
+    };
+
+    // Send the email
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent: ' + info.response);
+    res.status(200).json({ message: 'Email sent successfully!' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ error: 'Failed to send email.' });
   }
 };

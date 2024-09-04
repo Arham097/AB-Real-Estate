@@ -11,12 +11,30 @@ const Contact = () => {
   const emailRef = useRef(null);
   const messageRef = useRef(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const name = nameRef.current.value;
     const email = emailRef.current.value;
     const message = messageRef.current.value;
-    console.log(name, email, message);
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/house/send-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, message }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      res.status(500).json({
+        status: "fail",
+        message: err.message,
+      });
+    }
   };
   return (
     <div className="w-full min-h-96 py-5 max-md:py-10">
@@ -72,6 +90,7 @@ const Contact = () => {
                   type="text"
                   name="name"
                   placeholder="Full Name"
+                  autoComplete="off"
                   ref={nameRef}
                   className="appearance-none bg-transparent placeholder-gray-200 placeholder-bolder-4 "
                 />
@@ -80,6 +99,7 @@ const Contact = () => {
                 <input
                   type="text"
                   name="email"
+                  autoComplete="off"
                   placeholder="Email"
                   ref={emailRef}
                   className="appearance-none bg-transparent placeholder-gray-200 placeholder-bolder-4 "
