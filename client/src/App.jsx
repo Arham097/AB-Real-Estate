@@ -8,6 +8,7 @@ import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import PropertyDetails from "./Pages/PropertyDetails";
 import Contact from "./Pages/Contact";
+import ForgetPassword from "./Pages/ForgetPassword";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn />}></Route>
         <Route path="/house/:id" element={<PropertyDetails />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/forget-password" element={<ForgetPassword />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>
